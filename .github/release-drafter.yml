@@ -1,0 +1,20 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+
+categories:
+  - title: '✨ 새로운 기능'
+    labels: ['feature', 'enhancement']
+  - title: '🐛 버그 수정'
+    labels: ['bug', 'fix']
+  - title: '🧹 기타 변경'
+    labels: ['chore', 'refactor', 'style']
+  - title: '📝 문서'
+    labels: ['docs']
+
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+
+template: |
+  ## ✨ 변경사항
+  $CHANGES
+
+  ---

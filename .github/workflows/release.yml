@@ -1,0 +1,27 @@
+name: 🚀 릴리즈 퍼블리시
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  publish_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 태그 이름 설정
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: 릴리즈 퍼블리시
+        uses: release-drafter/release-drafter@v6
+        with:
+          tag: ${{ env.RELEASE_VERSION }}
+          name: ${{ env.RELEASE_VERSION }}
+          version: ${{ env.RELEASE_VERSION }}
+          publish: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
